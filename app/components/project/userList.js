@@ -12,7 +12,7 @@ export  default class UserListComponent extends Component{
 
     componentWillMount(){
         console.log('准备获取数据');
-        fetch('http://192.168.1.12/admin/data/user_list.php')
+        fetch('http://172.163.0.90/admin/data/user_list.php')
         .then((response)=>response.json())
         .then((result)=>{
             

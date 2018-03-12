@@ -14,7 +14,7 @@ export default class MyDetailComponent extends Component {
 
     componentWillMount() {
         var id = this.props.navigation.state.params.id;
-        fetch('http://192.168.1.12/admin/data/product/details.php?id=' + id).then((response) => response.json()).then((result) => {
+        fetch('http://172.163.0.90/admin/data/product/details.php?id=' + id).then((response) => response.json()).then((result) => {
             console.log(result);
             var detail = result.details;
             this.setState({ detail: detail })
@@ -47,9 +47,9 @@ export default class MyDetailComponent extends Component {
     composeViews() {
         var detail = this.state.detail;
         return <View style={{ flex: 1 }}>
-            <ScrollView>
+            <ScrollView >
                 {
-                    detail.picList && <Image style={{ resizeMode: 'stretch', height: 300, width: 340 }} source={{ uri: "http://192.168.1.12/admin/" + detail.picList[this.state.picIndex].md }}></Image>
+                    detail.picList && <Image style={{ resizeMode: 'stretch', height: 300, width: 340 }} source={{ uri: "http://172.163.0.90/admin/" + detail.picList[this.state.picIndex].md }}></Image>
                 }
                 <Text style={{ fontSize: 15 }}>{detail.title}</Text>
                 <Text>{detail.subtitle}</Text>
@@ -58,7 +58,7 @@ export default class MyDetailComponent extends Component {
             </ScrollView>
 
 
-            <Button style={{ justifyContent: 'flexEnd' }} color="red" onPress={this.handlePress} title="编辑产品"></Button>
+            <Button color="red" onPress={this.handlePress} title="编辑产品"></Button>
         </View>
     }
 

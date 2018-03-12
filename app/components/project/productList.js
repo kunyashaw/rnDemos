@@ -34,9 +34,10 @@ export default class
 
     loadData = () => {
         console.log('ready to load data');
-        var url = "http://192.168.1.12/data_vue_admin/product/list.php?pno="+this.state.pno;
+        var url = "http://172.163.0.90/data_vue_admin/product/list.php?pno="+this.state.pno;
         console.log(url);
         setTimeout(()=>{
+            console.log('准备发起请求！');
             fetch(url)
             .then((response) => response.json())
             .then((response) => {
@@ -85,7 +86,7 @@ export default class
 </View>*/
 
     showListItem=(info)=>{
-        let imgUrl = "http://192.168.1.12/"+info.item.pic;
+        let imgUrl = "http://172.163.0.90/"+info.item.pic;
         return  <View style={{flex:1,flexDirection:'column'}}>
                 
                 
@@ -107,8 +108,14 @@ export default class
             <ActivityIndicator size="large"></ActivityIndicator>
         </View>
     }
+    showEmpty=()=>{
+        return <View style={{alignItems:'center'}}>
+            <Text>加载数据中...</Text>
+        </View>
+    }
     render() {
         return <FlatList
+        ListEmptyComponent={this.showEmpty}
         ListFooterComponent={this.renderFooter}
         onEndReached={this.loadMore}
         onEndReachedThreshold={0.5}
